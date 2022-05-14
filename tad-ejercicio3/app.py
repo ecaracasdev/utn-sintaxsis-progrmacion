@@ -8,7 +8,6 @@ libreria = crearAgenda()
 while respuesta == 'si':
     opcion = int(input("""
         Seleccione la opcion para la operacion que desea realizar:
-        0. Agregar cita
         1. Modificar fecha y hora de la cita
         2. Eliminar cita
         3. Listado de citas
