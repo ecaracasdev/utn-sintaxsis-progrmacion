@@ -22,7 +22,7 @@ while respuesta == 'si':
         1. Modificar fecha y hora de la cita
         2. Eliminar cita
         3. Listado de citas
-        4. Pasar la cita a otro dia
+        4. Pasar todas las citas de un día a otro día determinado
         5. Eliminar todas las citas de una obra social
         6. Generar cola con todos los nombres y obra social de pacientes que se atienden en un dia
     """))
@@ -61,7 +61,12 @@ while respuesta == 'si':
         for i in range(0, tamanio(agenda)):
             print(f'paciente {i+1}: {recuperarCita(agenda,i)}')
     if opcion == 4: # pasar citas a otro dia
-        print('hola')
+        dia_actual = input('Ingrese el día actual de las citas a pasar: ')
+        dia_deseado = input('Ingrese el día determinado a pasar las citas: ')
+        for i in range(0, tamanio(agenda)):
+            citaRecuperada = recuperarCita(agenda,i)
+                if verFecha(citaRecuperada) == dia_actual:
+                    modificarFechaHora(citaRecuperada,dia_deseado,verHora(citaRecuperada))
     if opcion == 5: # eliminar elementos por obra social
         obraSocial = input('Introduzca el nombre de la obra social de la cual desea borrar las citas: \n')
         agenda = eliminarCitasPorObraSocial(agenda,obraSocial)
