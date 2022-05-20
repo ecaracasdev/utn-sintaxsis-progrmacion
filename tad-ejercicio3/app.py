@@ -63,8 +63,8 @@ while respuesta == 'si':
         dia_deseado = input('Ingrese el día determinado a pasar las citas: ')
         for i in range(0, tamanio(agenda)):
             citaRecuperada = recuperarCita(agenda,i)
-                if verFecha(citaRecuperada) == dia_actual:
-                    modificarFechaHora(citaRecuperada,dia_deseado,verHora(citaRecuperada))
+            if verFecha(citaRecuperada) == dia_actual:
+                modificarFechaHora(citaRecuperada,dia_deseado,verHora(citaRecuperada))
     if opcion == 5: # eliminar elementos por obra social
         obraSocial = input('Introduzca el nombre de la obra social de la cual desea borrar las citas: \n')
         agenda = eliminarCitasPorObraSocial(agenda,obraSocial)
