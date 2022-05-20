@@ -43,12 +43,12 @@ while respuesta == 'si':
             citaRecuperada = recuperarCita(agenda, i)
             if citaRecuperada[0] == nombrePaciente:
                 print(
-                    f'fecha y hora antes de modificar la cita: {citaRecuperada[3]} , {citaRecuperada[4]}')
+                    f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)}, {verHora(citaRecuperada)}')
                 otraHora = int(input('introduzca la nueva Hora de la cita'))
                 otraFecha = int(input('introduzca la nueva fecha de la cita'))
                 modificarFechaHora(citaRecuperada, otraFecha, otraHora)
                 print(
-                    f'fecha y hora despues de modificar la cita: {citaRecuperada[3]} , {citaRecuperada[4]}')
+                    f'fecha y hora despues de modificar la cita: {verFecha(citaRecuperada)}, {verHora(citaRecuperada)}')
     if opcion == 2: # eliminar un item de la lista
         nombrePaciente = input('Introduzca el nombre del paciente que desea cancelar su cita: \n')
         for i in range(0, tamanio(agenda)):
@@ -66,6 +66,7 @@ while respuesta == 'si':
         for i in range(0, tamanio(agenda)):
             citaRecuperada = recuperarCita(agenda,i)
                 if verFecha(citaRecuperada) == dia_actual:
+                    print(f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)}, {verHora(citaRecuperada)}')
                     modificarFechaHora(citaRecuperada,dia_deseado,verHora(citaRecuperada))
     if opcion == 5: # eliminar elementos por obra social
         obraSocial = input('Introduzca el nombre de la obra social de la cual desea borrar las citas: \n')
