@@ -13,3 +13,10 @@ def cargarCita(cita, nombre, obraSocial, telefono, fecha, hora):
 def modificarFechaHora(cita, otraFecha, otraHora):
     cita[3] = otraFecha
     cita[4] = otraHora
+
+def verFecha(cita):
+    return cita[3]
+
+def verHora(cita):
+    return cita[4]
+
