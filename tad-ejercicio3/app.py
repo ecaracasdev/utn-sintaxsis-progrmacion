@@ -43,8 +43,8 @@ while respuesta == 'si':
             citaRecuperada = recuperarCita(agenda, i)
             if verNombre(citaRecuperada) == nombrePaciente:
                 print(f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
-                otraHora = int(input('introduzca la nueva Hora de la cita'))
-                otraFecha = int(input('introduzca la nueva fecha de la cita'))
+                otraHora = input('introduzca la nueva Hora de la cita')
+                otraFecha = input('introduzca la nueva fecha de la cita')
                 modificarFechaHora(citaRecuperada, otraFecha, otraHora)
                 print(f'fecha y hora despues de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
     if opcion == 2: # eliminar un item de la lista
