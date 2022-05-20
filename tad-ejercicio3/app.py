@@ -1,6 +1,6 @@
-from asyncio import constants
 from tadAgenda import *
 from tadCita import *
+from tadCola import *
 
 respuesta = 'si'
 counter = 0
@@ -8,7 +8,11 @@ agenda = crearAgenda()
 
 agenda = [
     ['elias', 'osde', '2e0322', 'wfewf', 'wefewf'],
-    ['simon', 'osde', '323249029', 'oifjewoifjw2', 'oijf3oi4']
+    ['simon', 'osde', '323249029', 'oifjewoifjw2', 'oijf3oi4'],
+    ['michelle', 'osde', '323249029', 'oifjewoifjw2', 'oijf3oi4'],
+    ['janme', 'ho', '323249029', 'oifjewoifjw2', 'oijf3oi4'],
+    ['juan', 'la', '323249029', 'oifjewoifjw2', 'oijf3oi4'],
+    ['jose', 'be', '323249029', 'oifjewoifjw2', 'oijf3oi4']
 ]
 
 while respuesta == 'si':
@@ -22,7 +26,7 @@ while respuesta == 'si':
         5. Eliminar todas las citas de una obra social
         6. Generar cola con todos los nombres y obra social de pacientes que se atienden en un dia
     """))
-    if opcion == 0:
+    if opcion == 0: # agregar cita
         cita = crearCita()
         print(f'Ingresar informacion de la cita \n')
         nombre = input('Nombre: ') 
@@ -32,7 +36,7 @@ while respuesta == 'si':
         hora = ''' input('Hora: ') ''' 'a'
         cargarCita(cita, nombre, obraSocial, telefono, fecha, hora)
         agregarCita(agenda, cita)
-    if opcion == 1:
+    if opcion == 1: # modificar fecha
         nombrePaciente = input(
             'introduzca el nombre del paciente que desea modificar la fecha y hora: \n')
         for i in range(0, tamanio(agenda)):
@@ -45,7 +49,7 @@ while respuesta == 'si':
                 modificarFechaHora(citaRecuperada, otraFecha, otraHora)
                 print(
                     f'fecha y hora despues de modificar la cita: {citaRecuperada[3]} , {citaRecuperada[4]}')
-    if opcion == 2:
+    if opcion == 2: # eliminar un item de la lista
         nombrePaciente = input('Introduzca el nombre del paciente que desea cancelar su cita: \n')
         for i in range(0, tamanio(agenda)):
             citaRecuperada = recuperarCita(agenda,i)
@@ -53,15 +57,21 @@ while respuesta == 'si':
             if citaRecuperada[0] == nombrePaciente:
                 indexToRemove = i
         eliminarCita(agenda, indexToRemove)
-    if opcion == 3:
+    if opcion == 3: # listar elementos
         for i in range(0, tamanio(agenda)):
             print(f'paciente {i+1}: {recuperarCita(agenda,i)}')
-    if opcion == 4:
+    if opcion == 4: # pasar citas a otro dia
+        print('hola')
+    if opcion == 5: # eliminar elementos por obra social
         obraSocial = input('Introduzca el nombre de la obra social de la cual desea borrar las citas: \n')
+        agenda = eliminarCitasPorObraSocial(agenda,obraSocial)
+    if opcion == 6: #cola de todos los nombre y obra social que se atienden en un dia
+        print('generar cola')
+        newCola = crearCola()
+        print(newCola)
         for cita in agenda:
-            if cita[1] == obraSocial:
-                eliminarCita(agenda, cita)
-    # if opcion == 5:
+            encolar(newCola, [cita[0],cita[1]])
+        print(f'cola con todos los nombre y obra sociales: {newCola}')
     else:
         print('adios')
         respuesta = 'no'

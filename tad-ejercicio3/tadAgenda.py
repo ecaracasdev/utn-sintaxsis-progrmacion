@@ -18,3 +18,11 @@ def recuperarCita(agenda,i):
 
 def eliminarCita(agenda, cita):
     return agenda.remove(cita)
+
+def eliminarCitasPorObraSocial(agenda, obraSocial):
+    newAgenda = []
+    for cita in agenda:
+        if cita[1] != obraSocial:
+            newAgenda.append(cita)
+    agenda = newAgenda.copy()
+    return agenda
