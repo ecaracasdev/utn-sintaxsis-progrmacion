@@ -22,14 +22,6 @@ def verTelefono(cita):
     return cita[0]
 
 
-def verFecha(cita):
-    return cita[0]
-
-
-def verHora(cita):
-    return cita[0]
-
-
 def modificarFechaHora(cita, otraFecha, otraHora):
     cita[3] = otraFecha
     cita[4] = otraHora
