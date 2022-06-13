@@ -34,8 +34,8 @@ while respuesta == 'si':
         nombre = input('Nombre: ') 
         obraSocial = input('Obra Social: ')
         telefono = input('Telefono: ')
-        fecha = input('Fecha: ')
-        hora = input('Hora: ')
+        fecha = input('Fecha (dd/mm/yyyy) : ')
+        hora = input('Hora (HH:MM): ')
         if validarFecha(fecha) & validarHora(hora):
             fechaFormateada = fechaParser(fecha)
             horaFormateada = horaParser(hora)
@@ -50,8 +50,8 @@ while respuesta == 'si':
             citaRecuperada = recuperarCita(agenda, i)
             if verNombre(citaRecuperada) == nombrePaciente:
                 print(f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
-                otraFecha = input('introduzca la nueva fecha de la cita: ')
-                otraHora = input('introduzca la nueva Hora de la cita: ')
+                otraFecha = input('introduzca la nueva fecha de la cita (dd/mm/yyyy): ')
+                otraHora = input('introduzca la nueva Hora de la cita (HH:MM): ')
                 if validarFecha(otraFecha) & validarHora(otraHora):
                     otraFechaFormateada = fechaParser(otraFecha)
                     otraHoraFormateada = horaParser(otraHora)
@@ -71,9 +71,9 @@ while respuesta == 'si':
         for i in range(0, tamanio(agenda)):
             print(f'paciente {i+1}: {recuperarCita(agenda,i)}')
     if opcion == 4: # pasar citas a otro dia
-        fechaActual = input('Ingrese la fecha que desea modificar: ')
-        fechaNueva = input('Ingrese la nueva fecha: ')
-        horaNueva = input('Ingrese la nueva hora: ')
+        fechaActual = input('Ingrese la fecha que desea modificar (dd/mm/yyyy): ')
+        fechaNueva = input('Ingrese la nueva fecha (dd/mm/yyyy): ')
+        horaNueva = input('Ingrese la nueva hora (HH:MM): ')
 
         if validarFecha(fechaActual) & validarFecha(fechaNueva) & validarHora(horaNueva):
             fechaActualFormateada = fechaParser(fechaActual)
