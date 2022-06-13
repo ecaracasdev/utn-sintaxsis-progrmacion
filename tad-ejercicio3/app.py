@@ -5,6 +5,7 @@ from tadCola import *
 from utils import *
 
 respuesta = 'si'
+isValidDate = False
 counter = 0
 agenda = crearAgenda()
 
@@ -34,31 +35,38 @@ while respuesta == 'si':
         nombre = input('Nombre: ') 
         obraSocial = input('Obra Social: ')
         telefono = input('Telefono: ')
-        fecha = input('Fecha (dd/mm/yyyy) : ')
-        hora = input('Hora (HH:MM): ')
-        if validarFecha(fecha) & validarHora(hora):
-            fechaFormateada = fechaParser(fecha)
-            horaFormateada = horaParser(hora)
-            cargarCita(cita, nombre, obraSocial, telefono, fechaFormateada, horaFormateada)
-            agregarCita(agenda, cita)
-        else:
-            print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
+
+        while isValidDate == False:
+            fecha = input('Fecha (dd/mm/yyyy) : ')
+            hora = input('Hora (HH:MM): ')
+            if validarFecha(fecha) & validarHora(hora):
+                fechaFormateada = fechaParser(fecha)
+                horaFormateada = horaParser(hora)
+                cargarCita(cita, nombre, obraSocial, telefono, fechaFormateada, horaFormateada)
+                agregarCita(agenda, cita)
+                isValidDate = True
+            else:
+                print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
     if opcion == 1: # modificar fecha
+        
         nombrePaciente = input(
             'introduzca el nombre del paciente que desea modificar la fecha y hora: \n')
+       
         for i in range(0, tamanio(agenda)):
             citaRecuperada = recuperarCita(agenda, i)
             if verNombre(citaRecuperada) == nombrePaciente:
-                print(f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
-                otraFecha = input('introduzca la nueva fecha de la cita (dd/mm/yyyy): ')
-                otraHora = input('introduzca la nueva Hora de la cita (HH:MM): ')
-                if validarFecha(otraFecha) & validarHora(otraHora):
-                    otraFechaFormateada = fechaParser(otraFecha)
-                    otraHoraFormateada = horaParser(otraHora)
-                    modificarFechaHora(citaRecuperada, otraFechaFormateada, otraHoraFormateada)
-                    print(f'fecha y hora despues de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
-                else:
-                    print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
+                while isValidDate == False:
+                    print(f'fecha y hora antes de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
+                    otraFecha = input('introduzca la nueva fecha de la cita (dd/mm/yyyy): ')
+                    otraHora = input('introduzca la nueva Hora de la cita (HH:MM): ')
+                    if validarFecha(otraFecha) & validarHora(otraHora):
+                        otraFechaFormateada = fechaParser(otraFecha)
+                        otraHoraFormateada = horaParser(otraHora)
+                        modificarFechaHora(citaRecuperada, otraFechaFormateada, otraHoraFormateada)
+                        print(f'fecha y hora despues de modificar la cita: {verFecha(citaRecuperada)} , {verHora(citaRecuperada)}')
+                        isValidDate = True
+                    else:
+                        print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
     if opcion == 2: # eliminar un item de la lista
         nombrePaciente = input('Introduzca el nombre del paciente que desea cancelar su cita: \n')
         for i in range(0, tamanio(agenda)):
@@ -71,25 +79,28 @@ while respuesta == 'si':
         for i in range(0, tamanio(agenda)):
             print(f'paciente {i+1}: {recuperarCita(agenda,i)}')
     if opcion == 4: # pasar citas a otro dia
-        fechaActual = input('Ingrese la fecha que desea modificar (dd/mm/yyyy): ')
-        fechaNueva = input('Ingrese la nueva fecha (dd/mm/yyyy): ')
-        horaNueva = input('Ingrese la nueva hora (HH:MM): ')
-
-        if validarFecha(fechaActual) & validarFecha(fechaNueva) & validarHora(horaNueva):
-            fechaActualFormateada = fechaParser(fechaActual)
-            fechaNuevaFormateada = fechaParser(fechaNueva)
-            horaNuevaFormateada = horaParser(horaNueva)
-        else:
-            print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
-
-        for i in range(0, tamanio(agenda)):
-            citaRecuperada = recuperarCita(agenda,i)
-            if verFecha(citaRecuperada) == fechaActualFormateada:
-                print('cita por modificar')
-                print(citaRecuperada)
-                modificarFechaHora(citaRecuperada, fechaNuevaFormateada, horaNuevaFormateada)
-                print('cita modificada: ')
-                print(citaRecuperada)
+        while isValidDate == False:
+            fechaActual = input('Ingrese la fecha que desea modificar (dd/mm/yyyy): ')
+            fechaNueva = input('Ingrese la nueva fecha (dd/mm/yyyy): ')
+            horaNueva = input('Ingrese la nueva hora (HH:MM): ')
+           
+            if validarFecha(fechaActual) & validarFecha(fechaNueva) & validarHora(horaNueva):
+                fechaActualFormateada = fechaParser(fechaActual)
+                fechaNuevaFormateada = fechaParser(fechaNueva)
+                horaNuevaFormateada = horaParser(horaNueva)
+        
+                for i in range(0, tamanio(agenda)):
+                    citaRecuperada = recuperarCita(agenda,i)
+                    if verFecha(citaRecuperada) == fechaActualFormateada:
+                        print('cita por modificar')
+                        print(citaRecuperada)
+                        modificarFechaHora(citaRecuperada, fechaNuevaFormateada, horaNuevaFormateada)
+                        print('cita modificada: ')
+                        print(citaRecuperada)
+                
+                isValidDate = True
+            else:
+                print('formato de fecha u hora invalidos por favor cargue la informacion nuevamente\n')
     if opcion == 5: # eliminar elementos por obra social
         obraSocial = input('Introduzca el nombre de la obra social de la cual desea borrar las citas: \n')
         agenda = eliminarCitasPorObraSocial(agenda,obraSocial)
