@@ -85,7 +85,7 @@ def main():
             listaCitas(agenda)
 
         if opcion == '4': # listar elementos
-        listaCitas(agenda)
+            listaCitas(agenda)
 
         if opcion == '5': # pasar citas a otro dia
             isValidDate = False
