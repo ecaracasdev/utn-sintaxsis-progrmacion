@@ -5,10 +5,7 @@ from tadCola import *
 from utils import *
 from constants import *
 
-respuesta = 'si'
-isValidDate = False
-agenda = crearAgenda()
-agenda = DEFAULT_DATA
+
 
 def listaCitas(agenda):
     print(APPOINMENT_LIST)
@@ -34,6 +31,10 @@ def validOption(option):
     return False
 
 def main():
+    respuesta = 'si'
+    isValidDate = False
+    agenda = crearAgenda()
+    agenda = DEFAULT_DATA
     while respuesta == 'si':
         opcion = input(MENU_MESSAGE)
         
