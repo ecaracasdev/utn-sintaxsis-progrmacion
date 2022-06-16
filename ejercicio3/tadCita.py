@@ -15,11 +15,11 @@ def verNombre(cita):
 
 
 def verObraSocial(cita):
-    return cita[0]
+    return cita[1]
 
 
 def verTelefono(cita):
-    return cita[0]
+    return cita[2]
 
 
 def modificarFechaHora(cita, otraFecha, otraHora):

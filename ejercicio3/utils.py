@@ -25,7 +25,7 @@ def fechaParser(fecha):
     year = int(fechaParseada[2])
     month = int(fechaParseada[1])
     day = int(fechaParseada[0])
-    fechaFormateada = datetime(year, month, day)
+    fechaFormateada = datetime(year, month, day).strftime('%d/%m/%Y')
     return fechaFormateada
 
 
@@ -33,7 +33,7 @@ def horaParser(hora):
     horaParseada = re.split(':',hora)
     hours = int(horaParseada[0])
     minutes = int(horaParseada[1])
-    horaFormateada = time(hours,minutes)
+    horaFormateada = time(hours,minutes).strftime('%H:%M')
     return horaFormateada
 
 
