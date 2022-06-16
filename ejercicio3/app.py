@@ -17,12 +17,12 @@ def listaCitas(agenda):
     
 def eliminarDeLaAgenda(agenda): 
     nombrePaciente = input(SEARCH_BY_NAME)
+    citaAEliminar = []
     for i in range(0, tamanio(agenda)):
         citaRecuperada = recuperarCita(agenda,i)
-        indexToRemove = 0
         if verNombre(citaRecuperada) == nombrePaciente:
-            indexToRemove = i
-    eliminarCita(agenda, indexToRemove)
+            citaAEliminar = citaRecuperada        
+    eliminarCita(agenda, citaAEliminar)
 
 def validOption(option):
     match = re.findall('[0-9]+',option)

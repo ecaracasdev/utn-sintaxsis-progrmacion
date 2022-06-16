@@ -17,7 +17,7 @@ def recuperarCita(agenda,i):
 
 
 def eliminarCita(agenda, index):
-    return agenda.pop(index)
+    return agenda.remove(index)
 
 def eliminarCitasPorObraSocial(agenda, obraSocial):
     newAgenda = []
