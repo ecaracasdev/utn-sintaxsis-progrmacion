@@ -46,7 +46,7 @@ ADD_HOUR = 'Hora (HH:MM): '
 ADD_NEW_DATE = '\nintroduzca la nueva fecha de la cita (dd/mm/yyyy): \n'
 ADD_NEW_HOUR = '\nintroduzca la nueva hora de la cita (HH:MM): \n'
 
-PACIENT_NAME = '\nintroduzca el nombre del paciente que desea modificar la fecha y hora: \n'
+PACIENT_NAME = '\nintroduzca el nombre del paciente que desea modificar su cita: \n'
 
 DATE_TO_UPDATE = '\nIngrese la fecha que desea modificar (dd/mm/yyyy): \n'
 

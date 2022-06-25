@@ -62,6 +62,7 @@ def main():
                     print(INVALID_DATE)
 
         if opcion == '2': # modificar fecha
+            isValidDate = False
             nombrePaciente = input(PACIENT_NAME)
         
             for i in range(0, tamanio(agenda)):
@@ -94,17 +95,15 @@ def main():
             while isValidDate == False:
                 fechaActual = input(DATE_TO_UPDATE)
                 fechaNueva = input(ADD_NEW_DATE)
-                horaNueva = input(ADD_NEW_HOUR)
             
-                if validarFecha(fechaActual) & validarFecha(fechaNueva) & validarHora(horaNueva):
+                if validarFecha(fechaActual) & validarFecha(fechaNueva):
                     fechaActualFormateada = fechaParser(fechaActual)
                     fechaNuevaFormateada = fechaParser(fechaNueva)
-                    horaNuevaFormateada = horaParser(horaNueva)
                     print(UPDATED_APPOINMENT_LIST)
                     for i in range(0, tamanio(agenda)):
                         citaRecuperada = recuperarCita(agenda,i)
                         if verFecha(citaRecuperada) == fechaActualFormateada:
-                            modificarFechaHora(citaRecuperada, fechaNuevaFormateada, horaNuevaFormateada)
+                            modificarFecha(citaRecuperada, fechaNuevaFormateada)
                             if i == 0:
                                 print("{0:<10} {1:<12} {2:<12} {3:<12} {4:<10}".format('Nombre', 'Obra Social', 'Telefono', 'Fecha', 'Hora'))
                             print("{0:<10} {1:<12} {2:<12} {3:<12} {4:<10}".format(verNombre(citaRecuperada), verObraSocial(citaRecuperada), verTelefono(citaRecuperada), verFecha(citaRecuperada), verHora(citaRecuperada)))
@@ -120,12 +119,15 @@ def main():
             listaCitas(agenda)
 
         if opcion == '7': #cola de todos los nombre y obra social que se atienden en un dia
-            print("\nGENERANDO COLA CON NOMBRES Y OBRA SOCIAL\n")
-            t.sleep(3)
+            print("\nGENERANDO COLA CON NOMBRES Y OBRA SOCIAL...\n")
             newCola = crearCola()
             for cita in agenda:
                 encolar(newCola, [verNombre(cita),verObraSocial(cita)])
+            
             mostrarCola(newCola)
+
+            while not esVacia(newCola):
+                desencolar(newCola)
 
         if validOption(opcion):
             respuesta = input(END_MENU)

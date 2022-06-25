@@ -7,7 +7,7 @@ def encolar(cola, elemento):
     cola.append(elemento)
 
 def desencolar(cola):
-    elemento = cola.pop(1)
+    elemento = cola.pop()
     return elemento
 
 def esVacia(cola):
